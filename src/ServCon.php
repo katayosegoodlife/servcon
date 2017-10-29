@@ -55,8 +55,8 @@ class ServCon extends ContainerAbstract
         $this->add('queryString',        $svr[self::SVR_QUERY_STR] ?? self::DEF_QUERY_STR );
         $this->add('rawIfModifiedSince', $svr[self::SVR_IF_MOD_S] ?? self::DEF_IF_MOD_S );
         $this->add('requestSchema',      isset($svr[self::SVR_HTTPS]) ? 'https' : 'http');
-        $this->add('requestTime',        $svr[self::SVR_REQ_TIME] ?? time());
-        $this->add('requestTimeFloat',   $svr[self::SVR_REQ_TIMEF] ?? microtime(true));
+        $this->add('requestTime',        (int) ($svr[self::SVR_REQ_TIME] ?? time()));
+        $this->add('requestTimeFloat',   (float) ($svr[self::SVR_REQ_TIMEF] ?? microtime(true)));
 
         if (isset($svr[self::SVR_IF_MOD_S])) {
             $this->add('ifModifiedSince', strtotime($svr[self::SVR_IF_MOD_S]));

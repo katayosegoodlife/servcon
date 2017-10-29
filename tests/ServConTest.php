@@ -4,24 +4,18 @@ namespace Akizuki\ServCon\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Akizuki\ServCon\ServCon;
+use PCC\Std\Exceptions\InaccessiblePropertyException;
 
 class ServConTest extends TestCase
 {
-
-    /** @var ServCon */
-    private static $servConFull;
-
-    /** @var ServCon */
-    private static $servConNone;
 
     const VAL_UA   = 'MyUserAgent';
     const VAL_HOST = 'example.com';
     const VAL_TIME = 'Fri Jan 01 2010 00:00:00 GMT';
 
-    public static function setUpBeforeClass()
+    public function testValuesFull()
     {
-        parent::setUpBeforeClass();
-        self::$servConFull = new ServCon([
+        $t = new ServCon([
             ServCon::SVR_USER_AGENT => self::VAL_UA,
             ServCon::SVR_HTTPS      => 'On',
             ServCon::SVR_REQ_URI    => '/33/4',
@@ -32,13 +26,6 @@ class ServConTest extends TestCase
             ServCon::SVR_QUERY_STR  => '33=4',
             ServCon::SVR_IF_MOD_S   => self::VAL_TIME,
         ]);
-
-        self::$servConNone = new ServCon([]);
-    }
-
-    public function testValuesFull()
-    {
-        $t = self::$servConFull;
         $this->assertEquals(self::VAL_UA, $t->userAgent);
         $this->assertEquals('https', $t->requestSchema);
         $this->assertEquals(self::VAL_HOST, $t->requestHost);
@@ -54,7 +41,7 @@ class ServConTest extends TestCase
 
     public function testValuesNone()
     {
-        $t = self::$servConNone;
+        $t = new ServCon([]);
         $this->assertEquals(null, $t->userAgent);
         $this->assertEquals('http', $t->requestSchema);
         $this->assertEquals(null, $t->requestHost);
@@ -69,6 +56,25 @@ class ServConTest extends TestCase
         $this->assertEquals(false, $t->isHTTPS);
         $this->assertEquals(null, $t->ifModifiedSince);
         $this->assertEquals(null, $t->rawIfModifiedSince);
+    }
+
+    public function testIssetTrue()
+    {
+        $t = new ServCon([]);
+        $this->assertTrue(isset($t->ifModifiedSince));
+    }
+
+    public function testIssetFalse()
+    {
+        $t = new ServCon([]);
+        $this->assertFalse(isset($t->ifModifiedSince2));
+    }
+
+    public function testGetFail()
+    {
+        $t = new ServCon([]);
+        $this->expectException(InaccessiblePropertyException::class);
+        $s = $t->ifModifiedSince2;
     }
 
 }

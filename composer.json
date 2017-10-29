@@ -1,0 +1,23 @@
+{
+    "name": "4kizuki/servcon",
+    "description": "Server Variables Container for PHP",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "4kizuki",
+            "email": "akizuki.c10.l65@gmail.com"
+        }
+    ],
+    "require": {
+        "php-cc/std": "^1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Akizuki\\ServCon\\": "src/"
+        }
+    }
+}

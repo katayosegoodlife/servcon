@@ -29,7 +29,7 @@ class ServConTest extends TestCase
         $this->assertEquals(self::VAL_UA, $t->userAgent);
         $this->assertEquals('https', $t->requestSchema);
         $this->assertEquals(self::VAL_HOST, $t->requestHost);
-        $this->assertEquals('/33/4', $t->requestURI);
+        $this->assertEquals('33/4', $t->requestURI);
         $this->assertEquals('POST', $t->requestMethod);
         $this->assertEquals(334, $t->requestTime);
         $this->assertEquals(334.334334, $t->requestTimeFloat);

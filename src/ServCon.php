@@ -72,7 +72,7 @@ class ServCon extends ContainerAbstract
     private function getRequestURI(array $svr)
     {
         if (isset($svr[self::SVR_REQ_URI])) {
-            return ltrim(explode('?', $svr[self::SVR_REQ_URI])[0]);
+            return ltrim(explode('?', $svr[self::SVR_REQ_URI])[0], '/');
         }
         return self::DEF_REQ_URI;
     }

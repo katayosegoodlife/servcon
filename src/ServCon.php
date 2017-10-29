@@ -5,6 +5,13 @@ namespace Akizuki\ServCon;
 use Akizuki\ServCon\Abstracts\ContainerAbstract;
 
 /**
+ * [ Container ] Server Values Container
+ * 
+ * @author 4kizuki <akizuki.c10.l65@gmail.com>
+ * @copyright 2017 4kizuki. All Rights Reserved.
+ * @package 4kizuki/servcon
+ * @since 1.0.0
+ * 
  * @property-read string $userAgent
  * @property-read string $requestSchema
  * @property-read string $requestHost

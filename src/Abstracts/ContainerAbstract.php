@@ -4,6 +4,16 @@ namespace Akizuki\ServCon\Abstracts;
 
 use PCC\Std\StandardClass;
 
+/**
+ * [ Abstract Class ] Container Abstract
+ *
+ * Add values in constructor. Get values by magic methods.
+ * 
+ * @author 4kizuki <akizuki.c10.l65@gmail.com>
+ * @copyright 2017 4kizuki. All Rights Reserved.
+ * @package 4kizuki/servcon
+ * @since 1.0.0
+ */
 abstract class ContainerAbstract extends StandardClass
 {
 

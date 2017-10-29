@@ -27,7 +27,7 @@ abstract class ContainerAbstract extends StandardClass
 
     public function __isset(string $name): bool
     {
-        return isset($this->data[$name]) ? true : parent::__isset($name);
+        return array_key_exists($name, $this->data) ? true : parent::__isset($name);
     }
 
     public function __get(string $name)

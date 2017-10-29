@@ -35,7 +35,7 @@ class ServCon extends ContainerAbstract
     const DEF_REQ_URI    = null;
     const DEF_REQ_HOST   = null;
     const DEF_REQ_METHOD = null;
-    const DEF_QUERY_STR  = '';
+    const DEF_QUERY_STR  = null;
     const DEF_IF_MOD_S   = null;
 
     public function __construct(array $svr)
@@ -58,7 +58,11 @@ class ServCon extends ContainerAbstract
         }
     }
 
-    private function getRequestURI(array $svr): string
+    /**
+     * @param array $svr Server Variables
+     * @return null|string
+     */
+    private function getRequestURI(array $svr)
     {
         if (isset($svr[self::SVR_REQ_URI])) {
             return ltrim(explode('?', $svr[self::SVR_REQ_URI])[0]);

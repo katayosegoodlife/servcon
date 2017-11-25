@@ -4,7 +4,7 @@ namespace Akizuki\ServCon\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Akizuki\ServCon\ServCon;
-use PCC\Std\Exceptions\InaccessiblePropertyException;
+use Strict\Property\Errors\UndefinedPropertyError as InaccessiblePropertyException;
 
 class ServConTest extends TestCase
 {

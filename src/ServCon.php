@@ -2,7 +2,7 @@
 
 namespace Akizuki\ServCon;
 
-use Akizuki\ServCon\Abstracts\ContainerAbstract;
+use Strict\Property\Utility\ReadonlyPropertyContainer;
 
 /**
  * [ Container ] Server Values Container
@@ -24,7 +24,7 @@ use Akizuki\ServCon\Abstracts\ContainerAbstract;
  * @property-read int    $ifModifiedSince
  * @property-read string $rawIfModifiedSince
  */
-class ServCon extends ContainerAbstract
+class ServCon extends ReadonlyPropertyContainer
 {
 
     // Keys
@@ -47,21 +47,21 @@ class ServCon extends ContainerAbstract
 
     public function __construct(array $svr)
     {
-        $this->add('userAgent', $svr[self::SVR_USER_AGENT] ?? self::DEF_USER_AGENT);
-        $this->add('isHTTPS', isset($svr[self::SVR_HTTPS]));
-        $this->add('requestURI', $this->getRequestURI($svr));
-        $this->add('requestHost', $svr[self::SVR_REQ_HOST] ?? self::DEF_REQ_HOST);
-        $this->add('requestMethod', $svr[self::SVR_REQ_METHOD] ?? self::DEF_REQ_METHOD);
-        $this->add('queryString', $svr[self::SVR_QUERY_STR] ?? self::DEF_QUERY_STR);
-        $this->add('rawIfModifiedSince', $svr[self::SVR_IF_MOD_S] ?? self::DEF_IF_MOD_S);
-        $this->add('requestSchema', isset($svr[self::SVR_HTTPS]) ? 'https' : 'http');
-        $this->add('requestTime', (int) ($svr[self::SVR_REQ_TIME] ?? time()));
-        $this->add('requestTimeFloat', (float) ($svr[self::SVR_REQ_TIMEF] ?? microtime(true)));
+        $this->setReadonlyProperty('userAgent', $svr[self::SVR_USER_AGENT] ?? self::DEF_USER_AGENT);
+        $this->setReadonlyProperty('isHTTPS', isset($svr[self::SVR_HTTPS]));
+        $this->setReadonlyProperty('requestURI', $this->getRequestURI($svr));
+        $this->setReadonlyProperty('requestHost', $svr[self::SVR_REQ_HOST] ?? self::DEF_REQ_HOST);
+        $this->setReadonlyProperty('requestMethod', $svr[self::SVR_REQ_METHOD] ?? self::DEF_REQ_METHOD);
+        $this->setReadonlyProperty('queryString', $svr[self::SVR_QUERY_STR] ?? self::DEF_QUERY_STR);
+        $this->setReadonlyProperty('rawIfModifiedSince', $svr[self::SVR_IF_MOD_S] ?? self::DEF_IF_MOD_S);
+        $this->setReadonlyProperty('requestSchema', isset($svr[self::SVR_HTTPS]) ? 'https' : 'http');
+        $this->setReadonlyProperty('requestTime', (int) ($svr[self::SVR_REQ_TIME] ?? time()));
+        $this->setReadonlyProperty('requestTimeFloat', (float) ($svr[self::SVR_REQ_TIMEF] ?? microtime(true)));
 
         if (isset($svr[self::SVR_IF_MOD_S])) {
-            $this->add('ifModifiedSince', strtotime($svr[self::SVR_IF_MOD_S]));
+            $this->setReadonlyProperty('ifModifiedSince', strtotime($svr[self::SVR_IF_MOD_S]));
         } else {
-            $this->add('ifModifiedSince', null);
+            $this->setReadonlyProperty('ifModifiedSince', null);
         }
     }
 

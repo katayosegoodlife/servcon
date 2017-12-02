@@ -1,6 +1,6 @@
 <?php
 
-namespace Akizuki\ServCon;
+namespace Akizuki\ServCon\MutableContainer;
 
 /**
  * [ Container ] Server Values Container
@@ -10,7 +10,7 @@ namespace Akizuki\ServCon;
  * @package 4kizuki/servcon
  * @since 1.0.0
  */
-Trait ArrayAccessTrait
+Trait ArrayAccessMutTrait
 {
     private $container = array();
 
@@ -20,7 +20,11 @@ Trait ArrayAccessTrait
     }
 
     public function offsetSet($offset, $value) {
-        throw new \LogicException();
+        if (is_null($offset)) {
+            $this->container[] = $value;
+        } else {
+            $this->container[$offset] = $value;
+        }
     }
 
     public function offsetExists($offset) {
@@ -28,11 +32,10 @@ Trait ArrayAccessTrait
     }
 
     public function offsetUnset($offset) {
-        throw new \LogicException();
+        unset($this->container[$offset]);
     }
 
     public function offsetGet($offset) {
         return isset($this->container[$offset]) ? $this->container[$offset] : null;
     }
-
 }

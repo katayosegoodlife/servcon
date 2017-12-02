@@ -1,6 +1,6 @@
 <?php
 
-namespace Akizuki\ServCon;
+namespace Akizuki\ServCon\Container;
 
 /**
  * [ Container ] Server Values Container

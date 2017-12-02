@@ -1,6 +1,6 @@
 <?php
 
-namespace Akizuki\ServCon;
+namespace Akizuki\ServCon\MutableContainer;
 
 /**
  * [ Container ] Server Values Container
@@ -10,9 +10,7 @@ namespace Akizuki\ServCon;
  * @package 4kizuki/servcon
  * @since 1.0.0
  */
-class GetCon implements \ArrayAccess
+class PostMutCon implements \ArrayAccess
 {
-    use ArrayAccessTrait;
-
-
+    use ArrayAccessMutTrait;
 }

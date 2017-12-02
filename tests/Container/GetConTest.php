@@ -1,8 +1,8 @@
 <?php
 
-namespace Akizuki\ServCon\Tests;
+namespace Akizuki\ServConç\Tests;
 
-use Akizuki\ServCon\GetCon;
+use Akizuki\ServCon\Container\GetCon;
 use PHPUnit\Framework\TestCase;
 
 class GetConTest extends TestCase
